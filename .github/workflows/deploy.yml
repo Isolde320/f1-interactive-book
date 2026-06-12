@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Pure HTML to Pages
 
 on:
   push:
@@ -24,22 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: . # 直接上傳最外層的所有檔案（包含你的 index.html）
 
       - name: Deploy to GitHub Pages
         id: deployment
